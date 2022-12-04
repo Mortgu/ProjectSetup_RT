@@ -1,5 +1,4 @@
 use std::env::consts;
-
 use tauri::{AboutMetadata, CustomMenuItem, Menu, MenuItem, Submenu, WindowMenuEvent, Wry, Manager};
 
 pub(crate) fn get_menu() -> Menu {

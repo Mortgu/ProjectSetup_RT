@@ -3,33 +3,18 @@
     windows_subsystem = "windows"
 )]
 
-use tauri::{
-    api::path,
-    http::{ResponseBuilder, Uri},
-    Manager, RunEvent,
-};
+use tauri::Manager;
 
-use tokio::task::block_in_place;
-
-mod macos;
 mod menu;
+mod window;
+use window::*;
 
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
-            let app = app.handle();
+            let window = app.get_window("main").unwrap();
+            window.set_transparent_titlebar(true);
 
-            app.windows().iter().for_each(|(_, window)| {
-              //window.hide().unwrap();
-
-              #[cfg(target_os = "macos")] {
-                  use macos::*;
-
-                  let window = window.ns_window().unwrap();
-                 // set_titlebar_style(window, true, true);
-                 // blur_window_background(window);
-              }
-          });
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![my_custom_command])
