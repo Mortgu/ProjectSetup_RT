@@ -1,6 +1,6 @@
 use std::env::consts;
 
-use tauri::{AboutMetadata, CustomMenuItem, Manager, Menu, MenuItem, Submenu, WindowMenuEvent, Wry};
+use tauri::{AboutMetadata, CustomMenuItem, Menu, MenuItem, Submenu, WindowMenuEvent};
 
 pub(crate) fn get_menu() -> Menu {
     match consts::OS {
